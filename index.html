@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Senhas</title>
+    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="./script.js" defer></script>
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <div class="header__text">
+                <h1>Gerador de Senhas</h1>
+                <p>Gere e salve suas senhas</p>
+            </div>
+            <div class="header__actions">
+                <button class="btn-icon btn-acao-salvar"><i class="fa-regular fa-bookmark"></i></button>
+                <button class="btn-icon"><i class="fa-solid fa-moon"></i></button>
+            </div>
+        </header>
+
+        <section class="content">
+            <div class="card card--main">
+                <div class="input-group">
+                    <label>Senha Forte</label>
+                    <div class="input-wrapper">
+                        <input type="text" value="" readonly>
+                        <button class="btn-primary btn-primary--icon">
+                            <i class="fa-solid fa-shield-halved"></i> Gerar
+                        </button>
+                        <button class="btn-primary btn-primary--icon">
+                            <i class="fa-solid fa-shield-halved"></i> Copiar
+                        </button>
+                        <button class="btn-primary btn-primary--icon btn-acao-salvar">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <h2 class="history-title">Histórico:</h2>
+                
+                <div class="history-item">
+                    <input type="text" value="" readonly>
+                    <button class="btn-primary">Copiar</button>
+                </div>
+            </div>
+
+            <aside class="card card--saved">
+                <h3>Senhas Salvas</h3>
+                
+                <div class="saved-item">
+                    <span class="tag">Senha 1</span>
+                    <input type="text" value="" readonly>
+                </div>
+
+               
+            </aside>
+        </section>
+    </main>
+</body>
+</html>
