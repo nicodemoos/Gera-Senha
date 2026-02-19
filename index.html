@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="./script.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 </head>
 <body>
     <main class="container">
@@ -18,6 +19,7 @@
             <div class="header__actions">
                 <button class="btn-icon btn-acao-salvar"><i class="fa-regular fa-bookmark"></i></button>
                 <button class="btn-icon"><i class="fa-solid fa-moon"></i></button>
+                
             </div>
         </header>
 
@@ -26,11 +28,11 @@
                 <div class="input-group">
                     <label>Senha Forte</label>
                     <div class="input-wrapper">
-                        <input type="text" value="" readonly>
-                        <button class="btn-primary btn-primary--icon">
+                        <input class= "input-senha" type="text" value="" readonly>
+                        <button class="btn-primary btn-primary--icon btn-acao-gerar">
                             <i class="fa-solid fa-shield-halved"></i> Gerar
                         </button>
-                        <button class="btn-primary btn-primary--icon">
+                        <button class="btn-primary btn-primary--icon btn-acao-copiar">
                             <i class="fa-solid fa-shield-halved"></i> Copiar
                         </button>
                         <button class="btn-primary btn-primary--icon btn-acao-salvar">

@@ -54,7 +54,7 @@ button:hover {
 }
 
 .btn-primary {
-  background: #ff3366;
+  background: #33A8CC;
   color: white;
   padding: 12px 25px;
   border-radius: 8px;
@@ -135,8 +135,8 @@ input {
 }
 .saved-item .tag {
   display: inline-block;
-  border: 1px solid #ff3366;
-  color: #ff3366;
+  border: 1px solid #33A8CC;
+  color: #33A8CC;
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 0.75rem;
