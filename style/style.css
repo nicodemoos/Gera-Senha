@@ -125,9 +125,14 @@ input {
 }
 
 .history-item {
-  display: flex;
+  display: none;
   gap: 10px;
   margin-bottom: 15px;
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-color: #33A8CC #1a1a1a; /* Cor do 'polegar' e cor do 'trilho' */
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
 }
 
 .saved-item {
@@ -141,4 +146,11 @@ input {
   border-radius: 20px;
   font-size: 0.75rem;
   margin-bottom: 10px;
+}
+
+ul, li {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  margin: 10px;
 }/*# sourceMappingURL=style.css.map */

@@ -1,4 +1,4 @@
-// 1. Use querySelectorAll para permitir o uso do forEach
+//querySelectorAll para permitir o uso do forEach
 const botoesGerar = document.querySelectorAll(".btn-acao-gerar");
 const botoesCopiar = document.querySelectorAll(".btn-acao-copiar");
 const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
@@ -39,24 +39,44 @@ botoesGerar.forEach((botao) => {
     botao.addEventListener("click", () => {
         const senha = gerarSenha(12);
         document.querySelector(".input-senha").value = senha;
-
-        return senha;
+        adicionarAoHistorico(senha);
     });
 });
 
-
-
 botoesSalvar.forEach((botao) => {
     botao.addEventListener("click", () => {
-
         const icone = botao.querySelector("i");
-        
         if (icone.classList.contains("fa-regular")) {
             icone.classList.replace("fa-regular", "fa-solid");
         } else {
             icone.classList.replace("fa-solid", "fa-regular");
         }
-        
-        
     });
 });
+
+adicionarAoHistorico = (senha) => {
+    const listaHistorico = document.querySelector(".history-item");
+    const novoItem = document.createElement ("li"); 
+    novoItem.innerHTML = `
+        <input class="input-history" type="text" value="${senha}">
+        <button class="btn-primary btn-acao-copiar-historico">Copiar</button>
+        <button class="btn-primary btn-primary--icon btn-acao-salvar-historico">
+        <i class="fa-regular fa-bookmark"></i>
+        </button>
+    `;
+    listaHistorico.style.display = "block";
+    listaHistorico.prepend(novoItem);
+
+    const botaoCopiarHistorico = novoItem.querySelector(".btn-acao-copiar-historico");
+botaoCopiarHistorico.addEventListener("click", () => {
+        navigator.clipboard.writeText(senha); // Copia a senha específica deste item
+        
+        Swal.fire({
+           title: "Senha Copiada!",
+        icon: "success",
+        theme: "dark",
+        timerProgressBar: true,
+        timer: 1500
+        });
+    });
+}
