@@ -66,7 +66,6 @@ button {
 
 
 
-// Layout Principal
 .content {
     display: grid;
     grid-template-columns: 1.5fr 1fr;
@@ -118,7 +117,7 @@ input {
 }
 
 .history-item {
-    display: none;
+    
     gap: 10px;
     margin-bottom: 15px;
     max-height: 200px;    

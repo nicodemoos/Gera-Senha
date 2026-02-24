@@ -4,15 +4,28 @@ const botoesCopiar = document.querySelectorAll(".btn-acao-copiar");
 const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
 const botoesSalvar = document.querySelectorAll(".btn-acao-salvar");
 const inputSenha = document.querySelector(".input-senha");
+
+
 const listaAntiga = JSON.parse(localStorage.getItem('listaHistorico')) || [];
 
+function popUp(){
+    Swal.fire({
+        title: "Senha Copiada!",
+        icon: "success",
+        theme: "dark",
+        timerProgressBar: true,
+        timer: 1500,
+        confirmButtonColor: "#33A8CC"
+        });
+}
+
 function gerarSenha(tamanho) {
-    let senhaMontada = ""; 
+    let senha = ""; 
     for (let i = 0; i < tamanho; i++) {
         const indice = Math.floor(Math.random() * caracteres.length);
-        senhaMontada += caracteres.charAt(indice);
+        senha += caracteres.charAt(indice);
     }
-    return senhaMontada; 
+    return senha; 
 }
 
 function copiarSenha(textoCopiado) {
@@ -24,13 +37,7 @@ botoesCopiar.forEach((botao) => {
         copiarSenha();
         
         // Biblioteca SweetAlert2 para exibir um alerta de sucesso
-    Swal.fire({
-        title: "Senha Copiada!",
-        icon: "success",
-        theme: "dark",
-        timerProgressBar: true,
-        timer: 1500
-        });
+        popUp();
 
     });
 });
@@ -38,11 +45,12 @@ botoesCopiar.forEach((botao) => {
 botoesGerar.forEach((botao) => {
     botao.addEventListener("click", () => {
         const senha = gerarSenha(8);
-        document.querySelector(".input-senha").value = senha;
+        inputSenha.value = senha;
         adicionarAoHistorico(senha);
     });
 });
 
+//por enquanto está apenas trocando de icone
 botoesSalvar.forEach((botao) => {
     botao.addEventListener("click", () => {
         const icone = botao.querySelector("i");
@@ -53,6 +61,7 @@ botoesSalvar.forEach((botao) => {
         }
     });
 });
+
 
 adicionarAoHistorico = (senha,salvar = true) => {
     
@@ -65,26 +74,20 @@ adicionarAoHistorico = (senha,salvar = true) => {
         <i class="fa-regular fa-bookmark"></i>
         </button>
     `;
-    listaHistorico.style.display = "block";
-    listaHistorico.prepend(novoItem);
+    
+    listaHistorico.prepend(novoItem); //exibe a lista e coloca para o ultimo elemento aparecer em primeiro
 
     const botaoCopiarHistorico = novoItem.querySelector(".btn-acao-copiar-historico");
-botaoCopiarHistorico.addEventListener("click", () => {
+        botaoCopiarHistorico.addEventListener("click", () => {
         navigator.clipboard.writeText(senha); // Copia a senha específica deste item
         
-        Swal.fire({
-           title: "Senha Copiada!",
-        icon: "success",
-        theme: "dark",
-        timerProgressBar: true,
-        timer: 1500
-        });
+        popUp();
     });
 
     if(salvar){
-listaAntiga.push(senha);
-localStorage.setItem('listaHistorico', JSON.stringify(listaAntiga)); 
-}
+        listaAntiga.push(senha);
+        localStorage.setItem('listaHistorico', JSON.stringify(listaAntiga)); 
+    }
 }
 
 listaAntiga.forEach(senha => {

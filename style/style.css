@@ -114,7 +114,6 @@ input {
 }
 
 .history-item {
-  display: none;
   gap: 10px;
   margin-bottom: 15px;
   max-height: 200px;

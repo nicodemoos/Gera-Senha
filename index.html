@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Senhas</title>
+    <link rel="icon" type="image/svg+xml" href=./src/keycdn-brands-solid-full.svg>
     <link rel="stylesheet" href="./style/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
     <script src="./script.js" defer></script>
 </head>
 <body>
+    
     <main class="container">
         <header class="header">
             <div class="header__text">
@@ -17,9 +19,8 @@
                 <p>Gere e salve suas senhas</p>
             </div>
             <div class="header__actions">
-                <button class="btn-icon btn-acao-salvar"><i class="fa-regular fa-bookmark"></i></button>
-                <button class="btn-icon"><i class="fa-solid fa-moon"></i></button>
-                
+                <button id="modelHeader" class="btn-icon btn-acao-salvar"><i class="fa-regular fa-bookmark"></i></button>
+                <button class="btn-icon"><i class="fa-solid fa-moon"></i></button>          
             </div>
         </header>
 
