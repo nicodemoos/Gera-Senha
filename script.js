@@ -4,7 +4,7 @@ const botoesCopiar = document.querySelectorAll(".btn-acao-copiar");
 const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
 const botoesSalvar = document.querySelectorAll(".btn-acao-salvar");
 const inputSenha = document.querySelector(".input-senha");
-
+const listaAntiga = JSON.parse(localStorage.getItem('listaHistorico')) || [];
 
 function gerarSenha(tamanho) {
     let senhaMontada = ""; 
@@ -37,7 +37,7 @@ botoesCopiar.forEach((botao) => {
 
 botoesGerar.forEach((botao) => {
     botao.addEventListener("click", () => {
-        const senha = gerarSenha(12);
+        const senha = gerarSenha(8);
         document.querySelector(".input-senha").value = senha;
         adicionarAoHistorico(senha);
     });
@@ -54,13 +54,14 @@ botoesSalvar.forEach((botao) => {
     });
 });
 
-adicionarAoHistorico = (senha) => {
+adicionarAoHistorico = (senha,salvar = true) => {
+    
     const listaHistorico = document.querySelector(".history-item");
     const novoItem = document.createElement ("li"); 
     novoItem.innerHTML = `
         <input class="input-history" type="text" value="${senha}">
         <button class="btn-primary btn-acao-copiar-historico">Copiar</button>
-        <button class="btn-primary btn-primary--icon btn-acao-salvar-historico">
+        <button class="btn-primary btn-primary--icon btn-acao-salvar">
         <i class="fa-regular fa-bookmark"></i>
         </button>
     `;
@@ -79,4 +80,18 @@ botaoCopiarHistorico.addEventListener("click", () => {
         timer: 1500
         });
     });
+
+    if(salvar){
+listaAntiga.push(senha);
+localStorage.setItem('listaHistorico', JSON.stringify(listaAntiga)); 
 }
+}
+
+listaAntiga.forEach(senha => {
+    adicionarAoHistorico(senha,false);
+});
+
+
+
+
+

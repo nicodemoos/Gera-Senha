@@ -2,7 +2,7 @@
 $bg-color: #121212;
 $card-bg: #1a1a1a;
 $input-bg: #242424;
-$primary-color: #33A8CC; // Rosa/Coral da imagem
+$primary-color: #33A8CC;
 $text-main: #ffffff;
 $text-secondary: #888888;
 $border-radius: 8px;
@@ -33,21 +33,16 @@ body {
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 40px;
-
     h1 { font-size: 2.5rem; margin-bottom: 5px; }
     p { color: $text-secondary; font-size: 1.1rem; }
 
-    &__actions {
-        display: flex;
-        gap: 10px;
-    }
 }
 
 // Botões Genéricos
 button {
     cursor: pointer;
     border: none;
-    transition: filter 0.2s;
+    transition: filter 0.5s;
     &:hover { filter: brightness(1.2); }
 }
 
@@ -69,12 +64,7 @@ button {
     
 }
 
-.btn-dark {
-    background: $input-bg;
-    color: $text-secondary;
-    padding: 12px 15px;
-    border-radius: $border-radius;
-}
+
 
 // Layout Principal
 .content {

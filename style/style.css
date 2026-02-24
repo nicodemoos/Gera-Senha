@@ -32,15 +32,11 @@ body {
   color: #888888;
   font-size: 1.1rem;
 }
-.header__actions {
-  display: flex;
-  gap: 10px;
-}
 
 button {
   cursor: pointer;
   border: none;
-  transition: filter 0.2s;
+  transition: filter 0.5s;
 }
 button:hover {
   filter: brightness(1.2);
@@ -61,13 +57,6 @@ button:hover {
   font-weight: 600;
   display: flex;
   align-items: center;
-}
-
-.btn-dark {
-  background: #242424;
-  color: #888888;
-  padding: 12px 15px;
-  border-radius: 8px;
 }
 
 .content {
