@@ -4,10 +4,9 @@ const botoesCopiar = document.querySelectorAll(".btn-acao-copiar");
 const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
 const botoesSalvar = document.querySelectorAll(".btn-acao-salvar");
 const inputSenha = document.querySelector(".input-senha");
-
-
 const listaAntiga = JSON.parse(localStorage.getItem('listaHistorico')) || [];
 
+// Biblioteca SweetAlert2 para exibir um alerta de sucesso
 function popUp(){
     Swal.fire({
         title: "Senha Copiada!",
@@ -36,7 +35,7 @@ botoesCopiar.forEach((botao) => {
     botao.addEventListener("click", () => {
         copiarSenha();
         
-        // Biblioteca SweetAlert2 para exibir um alerta de sucesso
+        
         popUp();
 
     });
@@ -50,17 +49,30 @@ botoesGerar.forEach((botao) => {
     });
 });
 
-//por enquanto está apenas trocando de icone
-botoesSalvar.forEach((botao) => {
-    botao.addEventListener("click", () => {
-        const icone = botao.querySelector("i");
-        if (icone.classList.contains("fa-regular")) {
-            icone.classList.replace("fa-regular", "fa-solid");
-        } else {
-            icone.classList.replace("fa-solid", "fa-regular");
-        }
+
+
+
+senhasSalvas = (senha) =>{
+    const listaSalva = document.querySelector(".saved-item");
+    const senhaSalva = document.createElement("li");
+    senhaSalva.setAttribute("data-senha", senha);
+    senhaSalva.innerHTML = `
+        <input class="input-history" type="text" value="${senha}">
+        <button class="btn-primary btn-acao-copiar">Copiar</button>
+        <button class="btn-primary btn-primary--icon btn-acao-salvar">
+        <i class="fa-regular fa-bookmark"></i>
+        </button>
+    `
+    listaSalva.prepend(senhaSalva);
+
+    const botaoCopiarSalvo = senhaSalva.querySelector(".btn-acao-copiar");
+        botaoCopiarSalvo.addEventListener("click", () => {
+        navigator.clipboard.writeText(senha); // Copia a senha específica deste item
+        
+        popUp();
     });
-});
+    
+}
 
 
 adicionarAoHistorico = (senha,salvar = true) => {
@@ -84,15 +96,33 @@ adicionarAoHistorico = (senha,salvar = true) => {
         popUp();
     });
 
+    
+    const botaoSalvarHistorico = novoItem.querySelector(".btn-acao-salvar");
+    
+    botaoSalvarHistorico.addEventListener("click",() =>{
+        
+        const icone = novoItem.querySelector("i");
+        if (icone.classList.contains("fa-regular")) {
+            icone.classList.replace("fa-regular", "fa-solid");
+            senhasSalvas(senha);
+        } else {
+            icone.classList.replace("fa-solid", "fa-regular");
+            document.querySelector(".saved-item").querySelector(`[data-senha="${senha}"]`).remove(); 
+            // utilizando o setAttribute da linha 75
+        }})
+
     if(salvar){
         listaAntiga.push(senha);
         localStorage.setItem('listaHistorico', JSON.stringify(listaAntiga)); 
     }
+    
 }
 
 listaAntiga.forEach(senha => {
     adicionarAoHistorico(senha,false);
 });
+
+
 
 
 

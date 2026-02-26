@@ -106,6 +106,7 @@ input {
   color: #888888;
   font-size: 0.9rem;
   width: 100%;
+  outline: none;
 }
 
 .history-title {
@@ -127,13 +128,12 @@ input {
   margin-bottom: 30px;
 }
 .saved-item .tag {
-  display: inline-block;
-  border: 1px solid #33A8CC;
+  outline: none;
+  border-bottom: 1px solid #33A8CC;
   color: #33A8CC;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
+  padding: 5px 12px;
   margin-bottom: 10px;
+  background-color: transparent;
 }
 
 ul, li {

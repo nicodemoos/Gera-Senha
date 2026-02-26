@@ -108,6 +108,7 @@ input {
     color: $text-secondary;
     font-size: 0.9rem;
     width: 100%;
+    outline: none;
 }
 
 // Histórico
@@ -132,13 +133,12 @@ input {
     margin-bottom: 30px;
 
     .tag {
-        display: inline-block;
-        border: 1px solid $primary-color;
+        outline: none;
+        border-bottom: 1px solid $primary-color;
         color: $primary-color;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 0.75rem;
+        padding: 5px 12px; 
         margin-bottom: 10px;
+        background-color: transparent;
     }
 }
 
