@@ -31,50 +31,6 @@ function copiarSenha(textoCopiado) {
     textoCopiado = navigator.clipboard.writeText(inputSenha.value);
 }
 
-botoesCopiar.forEach((botao) => {
-    botao.addEventListener("click", () => {
-        copiarSenha();
-        
-        
-        popUp();
-
-    });
-});
-
-botoesGerar.forEach((botao) => {
-    botao.addEventListener("click", () => {
-        const senha = gerarSenha(8);
-        inputSenha.value = senha;
-        adicionarAoHistorico(senha);
-    });
-});
-
-
-
-
-senhasSalvas = (senha) =>{
-    const listaSalva = document.querySelector(".saved-item");
-    const senhaSalva = document.createElement("li");
-    senhaSalva.setAttribute("data-senha", senha);
-    senhaSalva.innerHTML = `
-        <input class="input-history" type="text" value="${senha}">
-        <button class="btn-primary btn-acao-copiar">Copiar</button>
-        <button class="btn-primary btn-primary--icon btn-acao-salvar">
-        <i class="fa-regular fa-bookmark"></i>
-        </button>
-    `
-    listaSalva.prepend(senhaSalva);
-
-    const botaoCopiarSalvo = senhaSalva.querySelector(".btn-acao-copiar");
-        botaoCopiarSalvo.addEventListener("click", () => {
-        navigator.clipboard.writeText(senha); // Copia a senha específica deste item
-        
-        popUp();
-    });
-    
-}
-
-
 adicionarAoHistorico = (senha,salvar = true) => {
     
     const listaHistorico = document.querySelector(".history-item");
@@ -117,6 +73,46 @@ adicionarAoHistorico = (senha,salvar = true) => {
     }
     
 }
+
+senhasSalvas = (senha) =>{
+    const listaSalva = document.querySelector(".saved-item");
+    const senhaSalva = document.createElement("li");
+    senhaSalva.setAttribute("data-senha", senha);
+    senhaSalva.innerHTML = `
+        <input class="input-history" type="text" value="${senha}">
+        <button class="btn-primary btn-acao-copiar">Copiar</button>
+        <button class="btn-primary btn-primary--icon btn-acao-salvar">
+        <i class="fa-regular fa-bookmark"></i>
+        </button>
+    `
+    listaSalva.prepend(senhaSalva);
+
+    const botaoCopiarSalvo = senhaSalva.querySelector(".btn-acao-copiar");
+        botaoCopiarSalvo.addEventListener("click", () => {
+        navigator.clipboard.writeText(senha); // Copia a senha específica deste item
+        
+        popUp();
+    });
+    
+}
+
+botoesCopiar.forEach((botao) => {
+    botao.addEventListener("click", () => {
+        copiarSenha();
+        
+        
+        popUp();
+
+    });
+});
+
+botoesGerar.forEach((botao) => {
+    botao.addEventListener("click", () => {
+        const senha = gerarSenha(8);
+        inputSenha.value = senha;
+        adicionarAoHistorico(senha);
+    });
+});
 
 listaAntiga.forEach(senha => {
     adicionarAoHistorico(senha,false);
