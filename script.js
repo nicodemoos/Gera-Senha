@@ -34,15 +34,15 @@ function copiarSenha(textoCopiado) {
 
 //funcionalidade da aba de histórico
 adicionarAoHistorico = (senha, salvar = true) => {
-    // 1. Mudamos o nome aqui para não confundir com a array global
+    const classeIcone = listaFavoritos.includes(senha) ? "fa-solid" : "fa-regular";
     const elementoListaHistorico = document.querySelector(".history-item"); 
-    const novoItem = document.createElement("li"); 
+    const novoItem = document.createElement("li");
     
     novoItem.innerHTML = `
         <input class="input-history" type="text" value="${senha}">
         <button class="btn-primary btn-acao-copiar-historico">Copiar</button>
         <button class="btn-primary btn-primary--icon btn-acao-salvar">
-            <i class="fa-regular fa-bookmark"></i>
+            <i class="${classeIcone} fa-bookmark"></i>
         </button>
     `;
     
@@ -62,6 +62,7 @@ adicionarAoHistorico = (senha, salvar = true) => {
         if (icone.classList.contains("fa-regular")) {
             icone.classList.replace("fa-regular", "fa-solid");
             senhasSalvas(senha);
+
 
             if (!listaFavoritos.includes(senha)) {
                 listaFavoritos.push(senha);
@@ -128,6 +129,18 @@ botoesGerar.forEach((botao) => {
         const senha = gerarSenha(8);
         inputSenha.value = senha;
         adicionarAoHistorico(senha);
+    });
+});
+
+botoesSalvar.forEach((botao) => {
+    botao.addEventListener("click", () => {
+        const senha = inputSenha.value; 
+        const icone = botao.querySelector("i");
+        
+        if (senha.trim() === "") return; 
+
+        
+        
     });
 });
 
